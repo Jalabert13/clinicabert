@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <template id="admin_dashboard">
+            <t t-call="website.layout">
+                <t t-call="clinicabert2.admin_layout"/>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- MUESTRA LOS PACIENTES SEGÚN EL FILTRO DE BÚSQUEDA -->
+    <template id="filtro_busqueda_pacientes" name="Pacientes con Discapacidad">
+        <t t-call="website.layout">
+            <div class="oe_structure"/>
+
+            <xpath expr="//form[@action='/patients-results']" position="after">
+                <div class="container mt-5 p-4 border border-dark p-2">
+                    <!-- Heading for search filter -->
+                    <h2 class="text-center mb-4">Filtro de Búsqueda de Pacientes con Discapacidad</h2>
+
+                    <!-- Form for filtering patient search -->
+                    <form action="/patients" method="GET">
+                        <!-- Select input for disability type -->
+                        <div class="row mb-3">
+                            <div class="form-group col-md-6">
+                                <label for="disability_type">Tipo de discapacidad:</label>
+                                <select class="form-control" id="disability_type" name="disability_type">
+                                    <option value="">Selecciona un Tipo</option>
+                                    <!-- Loop through disability types -->
+                                    <t t-foreach="disability_typees" t-as="disability_type">
+                                        <option t-att-value="disability_type">
+                                            <t t-esc="disability_type"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+
+                            <!-- Select input for association -->
+                            <div class="form-group col-md-6">
+                                <label for="association">Asociación:</label>
+                                <select class="form-control" id="association" name="association">
+                                    <option value="">Selecciona una asociación</option>
+                                    <!-- Loop through associations -->
+                                    <t t-foreach="associations" t-as="association">
+                                        <option t-att-value="association">
+                                            <t t-esc="association"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Select input for location -->
+                        <div class="row mb-3">
+                            <div class="form-group col-md-12">
+                                <label for="location">Localidad:</label>
+                                <select class="form-control" id="location" name="location">
+                                    <option value="">Selecciona una Localidad</option>
+                                    <!-- Loop through locations -->
+                                    <t t-foreach="locations" t-as="location">
+                                        <option t-att-value="location">
+                                            <t t-esc="location"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Button to submit the search -->
+                        <button type="submit" class="btn btn-primary btn_cta ">Buscar</button>
+                    </form>
+                </div>
+            </xpath>
+
+            <!-- Structure for layout -->
+            <div class="oe_structure"/>
+
+            <!-- Section for displaying search results -->
+            <!-- Heading for search results -->
+            <div class="container mt-5 mb-5 p-4">
+                <h2 class="text-center mb-4">Resultados de la Búsqueda</h2>
+                <div class="row">
+                    <!-- Check if patients are found -->
+                    <t t-if="patients" t-foreach="patients" t-as="patient">
+                        <!-- Display each patient -->
+                        <div class="col-lg-3 col-md-4 col-sm-6 mt-3 mb-3 card-clickable" t-att-data-patient-id="patient.id">
+                            <div class="card">
+                                <!-- Display patient image -->
+                                <img class="img img-fluid d-block mx-auto mb-1 p-2" style="height: 15rem;" t-if="patient.image" t-att-src="'data:image/png;base64,' + patient.image.decode()" alt=""/>
+
+                                <!-- Display patient information -->
+                                <div class="card-body bg-white">
+                                    <h5 class="card-title">
+                                        <t t-esc="patient.name"/>
+                                    </h5>
+                                    <p class="card-text">Discapacidad: <t t-esc="patient.disability_type"/>
+                                    </p>
+                                    <p class="card-text">Asociación: <t t-esc="patient.association.name"/>
+                                    </p>
+                                    <p class="card-text">Ubicación: <t t-esc="patient.location"/>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                    <!-- If no patients are found, display a message -->
+                    <t t-if="not patients">
+                        <div class="text-center">
+                            <p>No se encontraron pacientes que coincidan con los criterios de búsqueda.</p>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+        <script type="text/javascript" src="/clinicabert/static/assets/js/show_single_patient.js"></script>
+    </template>
+</odoo>
+

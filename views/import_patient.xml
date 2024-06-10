@@ -1,0 +1,28 @@
+<odoo>
+    <data>
+        <record id="view_import_patients_form" model="ir.ui.view">
+            <field name="name">clinica.patient.import</field>
+            <field name="model">clinica.patient</field>
+            <field name="arch" type="xml">
+                <form string="Import Patients">
+                    <group>
+                        <field name="csv_file" filename="filename" string="CSV File" widget="binary"/>
+                    </group>
+                    <footer>
+                        <button name="import_csv" string="Import" type="object" class="btn-primary"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_clinica_import_patient" model="ir.actions.act_window">
+            <field name="name">Importar Pacientes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">clinica.patient</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_import_patients_form"/>
+        </record>
+
+    </data>
+</odoo>
+

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="patient_single" name="Detalles del paciente">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 mt-3 mb-3">
+                            <div class="card h-auto custom-card">
+                                <div class="img-container">
+                                    <img class="img img-fluid d-block mx-auto mb-1 p-2" style="height: 15rem;" t-if="patient.image" t-att-src="'data:image/png;base64,' + patient.image.decode()" alt=""/>
+                                </div>
+                                <div class="card-body bg-white info-card">
+                                    <t t-if="patient.image_ids">
+                                        <div class="text-center mt-3">
+                                            <t t-foreach="patient.image_ids" t-as="image">
+                                                <img class="img img-fluid d-block mx-auto mb-1 p-2" style="height: 15rem;" t-if="patient.image" t-att-src="'data:image/png;base64,' + patient.image.decode()" alt=""/>
+                                            </t>
+                                        </div>
+                                    </t>
+                                    <div class="text-center">
+                                        <h5 class="card-title text-center mb-0">
+                                            <t t-esc="patient.name"/>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fullscreen-img">
+                            <img id="fullscreen-image" src="" alt=""/>
+                        </div>
+                        <div class="col-md-6 mt-3 mb-3 overflow-auto custom-card info-card">
+                            <div class="card h-100">
+                                <div class="card-body bg-white">
+                                    <h5 class="card-title">Información del paciente:</h5>
+                                    <input type="hidden" name="patient_id" t-att-value="patient.id" />
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Tipo de Discapacidad:</th>
+                                                <td>
+                                                    <t t-esc="patient.disability_type"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Diagnóstico:</th>
+                                                <td>
+                                                    <t t-esc="patient.diagnosis"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Localidad:</th>
+                                                <td>
+                                                    <t t-esc="patient.location"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Asociación:</th>
+                                                <td>
+                                                    <t t-esc="patient.association.name"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Peso:</th>
+                                                <td>
+                                                    <t t-esc="patient.weight"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Altura:</th>
+                                                <td>
+                                                    <t t-esc="patient.height"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Fecha de Ingreso:</th>
+                                                <td>
+                                                    <t t-esc="patient.entry_date"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Género:</th>
+                                                <td>
+                                                    <t t-esc="patient.gender"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Fecha de Nacimiento:</th>
+                                                <td>
+                                                    <t t-esc="patient.birth_date"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Teléfono de Contacto:</th>
+                                                <td>
+                                                    <t t-esc="patient.contact_phone"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Edad:</th>
+                                                <td>
+                                                    <t t-esc="patient.age"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Estado del Tratamiento:</th>
+                                                <td>
+                                                    <t t-esc="patient.state"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="whatsapp">
+                                                    <a t-attf-href="https://wa.me/#{patient.contact_phone}?text=Hola%20quiero%20contactar%20contigo%20#{patient.name}" target="_blank">
+                                                        <button class="button2">
+                                                            WhatsApp
+                                                            <svg viewBox="0 0 48 48" y="0px" x="0px"
+                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-0.001,0,0,0,0,0h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303z" fill="#fff"></path>
+                                                                <path d="M4.868,43.803c-0.132,0-0.26-0.052-0.355-0.148c-0.125-0.127-0.174-0.312-0.127-0.483l2.639-9.636c-1.636-2.906-2.499-6.206-2.497-9.556C4.532,13.238,13.273,4.5,24.014,4.5c5.21,0.002,10.105,2.031,13.784,5.713c3.679,3.683,5.704,8.577,5.702,13.781c-0.004,10.741-8.746,19.48-19.486,19.48c-3.189-0.001-6.344-0.788-9.144-2.277l-9.875,2.589C4.953,43.798,4.911,43.803,4.868,43.803z" fill="#fff"></path>
+                                                                <path d="M24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,4C24.014,4,24.014,4,24.014,4C12.998,4,4.032,12.962,4.027,23.979c-0.001,3.367,0.849,6.685,2.461,9.622l-2.585,9.439c-0.094,0.345,0.002,0.713,0.254,0.967c0.19,0.192,0.447,0.297,0.711,0.297c0.085,0,0.17-0.011,0.254-0.033l9.687-2.54c2.828,1.468,5.998,2.243,9.197,2.244c11.024,0,19.99-8.963,19.995-19.98c0.002-5.339-2.075-10.359-5.848-14.135C34.378,6.083,29.357,4.002,24.014,4L24.014,4z" fill="#cfd8dc"></path>
+                                                                <path d="M35.176,12.832c-2.98-2.982-6.941-4.625-11.157-4.626c-8.704,0-15.783,7.076-15.787,15.774c-0.001,2.91,0.802,5.756,2.322,8.252l0.367,0.601l-1.589,5.801l5.911-1.55l0.573,0.34c2.459,1.46,5.288,2.232,8.203,2.233h0.008c8.705,0,15.784-7.076,15.788-15.774C39.8,19.772,38.158,15.809,35.176,12.832z M24.024,38.355c-2.76-0.001-5.447-0.745-7.811-2.154l-0.559-0.331l-3.617,0.949l0.973-3.557l-0.362-0.592c-1.489-2.45-2.274-5.253-2.273-8.128c0.003-7.769,6.324-14.088,14.098-14.088c3.764,0.001,7.303,1.467,9.964,4.132c2.664,2.666,4.133,6.207,4.132,9.971C38.563,32.033,32.243,38.354,24.024,38.355z" fill="#40c351"></path>
+                                                                <path d="M18.989,19.497l-1.745-0.518c-0.147-0.043-0.302-0.045-0.451-0.007c-0.282,0.068-0.529,0.243-0.684,0.486c-0.303,0.478-1.069,1.853-1.069,4.542c0,2.689,1.094,5.29,1.246,5.651c0.149,0.36,2.104,4.025,5.192,5.483c0.721,0.353,1.303,0.562,1.749,0.719c0.736,0.235,1.406,0.202,1.933,0.122c0.591-0.09,1.811-0.742,2.069-1.461c0.256-0.718,0.256-1.333,0.179-1.461c-0.077-0.128-0.282-0.205-0.59-0.358c-0.308-0.154-1.811-0.894-2.093-0.998c-0.282-0.103-0.487-0.154-0.692,0.154c-0.205,0.308-0.794,0.998-0.973,1.205c-0.179,0.205-0.359,0.231-0.666,0.077c-0.308-0.154-1.3-0.479-2.475-1.529c-0.915-0.816-1.532-1.825-1.711-2.133c-0.179-0.308-0.019-0.474,0.137-0.628c0.142-0.14,0.308-0.359,0.462-0.538c0.154-0.179,0.205-0.308,0.308-0.513c0.103-0.205,0.051-0.385-0.026-0.538C19.781,21.179,19.146,19.711,18.989,19.497z" fill="#40c351"></path>
+                                                            </svg>
+                                                        </button>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a t-attf-href="/patients">
+                                                        <button class="whatsapp">
+                                                             Volver a la Lista
+                                                        </button>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-3 mb-3">
+                            <div class="card">
+                                <div class="card-body bg-white">
+                                    <p class="card-text">Informe: <t t-esc="patient.report"/>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-3 mb-3">
+                            <iframe class="s_map_embedded o_not_editable" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" t-att-src="'https://maps.google.com/maps?q=' + (patient.location or '') + '&amp;t=m&amp;z=12&amp;ie=UTF8&amp;iwloc=&amp;output=embed'"/>
+                            <input type="hidden" name="patient_location" t-att-value="patient.location"/>
+                        </div>
+                        <div class="oe_structure"></div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript" src="/clinicabert2/static/assets/js/expand_image.js"></script>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+   <record id="bert_administrator" model="res.groups">
+    <field name="name">Bert-Administrador</field>
+    <field name="category_id" ref="base.module_category_website"/>
+</record>
+</odoo>

@@ -1,0 +1,125 @@
+<odoo>
+    <data>
+        <template id="admin_layout">
+            <div class="grid-container">
+                <div class="header">
+                    <h1>Bienvenido al panel de Administracion!</h1>
+                    <p>Este contenido solo es visible para los administradores.</p>
+                </div>
+                <div class="sidebar">
+                    <div class="">
+                        <div class="">
+                            <div class="">
+                                <t t-if="admin_image">
+                                    <img t-att-src="'data:%s;base64,%s' % (admin_image['mime_type'], admin_image['image_base64'])" alt="Si no se muestra la imagen, revise el formato de la misma" class="img-fluid rounded-circle"/>
+                                </t>
+                                <t t-else="">
+                                    <p>No profile image available</p>
+                                </t>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="" id="navbarNav">
+                        <ul class="">
+                            <li class="nav-item active">
+                                <a id="dashboard" class="nav-link" href="/admin">Tabla de control</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="profile" class="nav-link" href="/admin/profile">Perfil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="patients" class="nav-link" href="/admin/patients">Mis Pacientes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="settings" class="nav-link" href="/admin/settings">Settings</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <script type="text/javascript" src="/clinicabert2/static/src/js/active_link.js"/>
+                </div>
+                <t t-if="current_route == '/admin'">
+                ESTE ES ADMIN
+                </t>
+                <t t-if="current_route == '/admin/profile'">
+                        ESTE ES PROFILE
+                </t>
+                <t t-if="current_route == '/admin/patients'">
+                    <div class="main">
+                        <h1>Mis Pacientes</h1>
+                        <div class="table-responsive patient-list-container">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Imagen</th>
+                                        <th>Nombre</th>
+                                        <th>Tipo de Discapacidad</th>
+                                        <th>Diagnóstico</th>
+                                        <th>Fecha de Ingreso</th>
+                                        <th>Género</th>
+                                        <th>Peso</th>
+                                        <th>Altura</th>
+                                        <th>Localidad</th>
+                                        <th>Fecha de Nacimiento</th>
+                                        <th>Edad</th>
+                                        <th>Estado del Tratamiento</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="patients" t-as="patient">
+                                        <tr>
+                                            <td>
+                                                    <img class="img img-fluid d-block mx-auto mb-1 p-2" style="height: 7rem;" t-att-src="'data:image/png;base64,' + (patient.image.decode('utf-8') if patient.image else '')" alt="Imagen del Paciente"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="patient.name"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="patient.disability_type"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="patient.diagnosis"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="patient.entry_date"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="patient.gender"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="patient.weight"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="patient.height"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="patient.location"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="patient.birth_date"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="patient.age"/>
+                                            </td>
+                                            <td>
+                                                <t t-esc="patient.state"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </div>
+            <div class="oe_structure">
+            </div>
+        </template>
+
+
+        <template id="show_admin_patients">
+
+        </template>
+
+    </data>
+</odoo>

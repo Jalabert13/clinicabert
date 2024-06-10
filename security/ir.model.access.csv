@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+clinicabert2.access.clinica_patient,access_clinica_patient,clinicabert2.model_clinica_patient,base.group_user,1,1,1,1
+clinicabert2.access.patient_image,access_patient_image,clinicabert2.model_patient_image,base.group_user,1,1,1,1
+clinicabert2.access.query_view,access_query_view,clinicabert2.model_query_view,base.group_user,1,1,1,1
+clinicabert2.access.clinica_patient_association,access_clinica_patient_association,clinicabert2.model_clinica_patient,base.group_user,1,1,1,1

@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <template id="is_admin">
+            <t t-set="grupo" t-value="request.env['res.groups'].search([('name', '=', 'Bert-Administrador')], limit=1)"/>
+            <t t-set="grupo_id" t-value="grupo.id if grupo else -1"/>
+            <t t-if="grupo_id in request.env.user.groups_id.ids">
+                    <t t-call="clinicabert2.admin_dashboard"/>
+            </t>
+            <t t-if="grupo_id not in request.env.user.groups_id.ids">
+                <t t-call="website.layout">
+                    <div class="container">
+                        <h1>Acceso denegado</h1>
+                        <p>No tienes permiso para acceder a esta página.</p>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>
