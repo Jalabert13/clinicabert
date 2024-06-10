@@ -4,4 +4,5 @@
     <field name="name">Custom Website Group</field>
     <field name="category_id" ref="base.module_category_website"/>
 </record>
+
 </odoo>

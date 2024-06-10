@@ -19,15 +19,3 @@ class RoleController(http.Controller):
                     groups = user.groups_id
                     group_names = groups.mapped('name')
                     return group_names
-
-            # return """
-            #     <html>
-            #         <head><title>Hola Mundo</title></head>
-            #         <body>
-            #             <h1>Hola Mundo!</h1>
-            #             <p>Este es un párrafo en HTML.</p>
-            #         </body>
-            #     </html>
-            #     """            
-            # return request.redirect('/')
-

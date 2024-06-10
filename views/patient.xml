@@ -73,8 +73,6 @@
         </field>
     </record>
 
-
-
     <record id="view_clinica_patient_kanban" model="ir.ui.view">
         <field name="name">clinica.patient.kanban</field>
         <field name="model">clinica.patient</field>
@@ -111,13 +109,25 @@
         </field>
     </record>
 
-
+    <!-- Definir la vista de calendario -->
+    <record id="view_clinica_patient_calendar" model="ir.ui.view">
+        <field name="name">clinica.patient.calendar</field>
+        <field name="model">clinica.patient</field>
+        <field name="arch" type="xml">
+            <calendar string="Calendario de Pacientes"
+                      date_start="entry_date"
+                      color="gender">
+                <field name="name"/>
+                <field name="disability_type"/>
+            </calendar>
+        </field>
+    </record>
 
     <record id="action_clinica_patient" model="ir.actions.act_window">
         <field name="name">Pacientes con discapacidad</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">clinica.patient</field>
-        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_mode">tree,form,kanban,calendar</field>
     </record>
 
     <!-- <record id="action_clinica_csv" model="ir.actions.act_window">
@@ -125,8 +135,6 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">clinica.import.csv</field>
         <field name="view_mode">form</field>
-</record> -->
-
-
+    </record> -->
 
 </odoo>
